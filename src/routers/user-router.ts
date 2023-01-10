@@ -1,5 +1,7 @@
 import express from 'express'
 
+import userMiddle from '../middlewares/user-middle'
+
 const userRouter = express.Router()
 
 userRouter.post('/create', (req, res) => {
@@ -15,12 +17,12 @@ userRouter.get('/get/:id', (req, res) => {
   res.send(`Read user with id ${id}`)
 })
 
-userRouter.put('/update/:id', (req, res) => {
+userRouter.put('/update/:id', userMiddle.verifyUser, (req, res) => {
   const id: number = +req.params.id
   res.send(`Update user with id ${id}`)
 })
 
-userRouter.delete('/delete/:id', (req, res) => {
+userRouter.delete('/delete/:id', userMiddle.verifyUser, (req, res) => {
   const id: number = +req.params.id
   res.send(`Delete user with id ${id}`)
 })

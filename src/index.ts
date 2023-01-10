@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 
 import userRouter from './routers/user-router'
+import postRouter from './routers/post-router'
 
 // PORT
 const PORT = process.env.PORT || 4000
@@ -21,7 +22,9 @@ app.use(cors({
   origin: ['http://localhost:3000'],
 }))
 
+// ROUTES
 app.use('/user', userRouter)
+app.use('/post', postRouter)
 
 // DEFAULT ROUTE
 app.use((req, res) => {
