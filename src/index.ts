@@ -1,7 +1,6 @@
 // Importing modules
 import express from 'express'
 import cors from 'cors'
-import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 
 // Routers
@@ -9,7 +8,7 @@ import userRouter from './routers/user-router'
 import postRouter from './routers/post-router'
 
 // Dotenv
-dotenv.config()
+require('dotenv').config()
 
 // Port
 const PORT = process.env.PORT || 4000
@@ -19,7 +18,7 @@ const HOSTNAME = process.env.HOSTNAME || 'localhost'
 
 // MongoDB
 mongoose.set('strictQuery', true)
-mongoose.connect('mongodb+srv://admin:admin@learningmongo.llekg2g.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(`${process.env.MONGO_URL}`)
 
 // App
 const app = express()
