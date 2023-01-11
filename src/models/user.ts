@@ -9,6 +9,7 @@ export interface IUser {
   email: string,
   password: string,
   age: number,
+  isPrivate: boolean,
   friends: IUser[],
   posts: IPost[],
   answers: IAnswer[],
@@ -36,6 +37,10 @@ const UserSchema = new Schema<IUser>({
   age: {
     type: Number,
   },
+  isPrivate: {
+    type: Boolean,
+    default: false,
+  },
   posts: [{
     type: Schema.Types.ObjectId,
     ref: 'Post',
@@ -43,6 +48,7 @@ const UserSchema = new Schema<IUser>({
   friends: [{
     type: Schema.Types.ObjectId,
     ref: 'User',
+    maxlength: 100,
   }],
   answers: [{
     type: Schema.Types.ObjectId,

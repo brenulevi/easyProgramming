@@ -3,6 +3,8 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 
+const cookieParser = require('cookie-parser')
+
 // Routers
 import userRouter from './routers/user-router'
 import postRouter from './routers/post-router'
@@ -26,6 +28,8 @@ const app = express()
 // Json
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use(cookieParser())
 
 // Cors
 app.use(cors({

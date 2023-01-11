@@ -16,9 +16,9 @@ userRouter.post('/login', UserController.login)
 
 userRouter.get('/get/:id', UserController.get)
 
-userRouter.put('/update/:id', userMiddle.verifyUser, UserController.update)
+userRouter.put('/update', userMiddle.verifyUser, UserController.update)
 
-userRouter.delete('/delete/:id', userMiddle.verifyUser, UserController.remove)
+userRouter.delete('/delete', userMiddle.verifyUser, UserController.remove)
 
 // Exporting router
 export default userRouter
