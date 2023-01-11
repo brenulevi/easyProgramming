@@ -1,9 +1,12 @@
+// Importing modules
 import express from 'express'
 
+// Importing middlewares
 import userMiddle from '../middlewares/user-middle'
 
 const postRouter = express.Router()
 
+// Routes
 postRouter.post('/create', (req, res) => {
   res.send('Create new post')
 })
@@ -27,4 +30,5 @@ postRouter.delete('/delete/:id', userMiddle.verifyUser, (req, res) => {
   res.send(`Delete post with id ${id}`)
 })
 
+// Exporting router
 export default postRouter

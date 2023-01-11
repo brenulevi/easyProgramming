@@ -1,30 +1,24 @@
+// Importing modules
 import express from 'express'
 
+// Importing middlewares
 import userMiddle from '../middlewares/user-middle'
+
+// Importing controllers
+import UserController from '../controllers/UserController'
 
 const userRouter = express.Router()
 
-userRouter.post('/create', (req, res) => {
-  res.send('Create new user')
-})
+// Routes
+userRouter.post('/create', UserController.create)
 
-userRouter.get('/get', (req, res) => {
-  res.send('Read all users')
-})
+userRouter.post('/login', UserController.login)
 
-userRouter.get('/get/:id', (req, res) => {
-  const id: number = +req.params.id
-  res.send(`Read user with id ${id}`)
-})
+userRouter.get('/get/:id', UserController.get)
 
-userRouter.put('/update/:id', userMiddle.verifyUser, (req, res) => {
-  const id: number = +req.params.id
-  res.send(`Update user with id ${id}`)
-})
+userRouter.put('/update/:id', userMiddle.verifyUser, UserController.update)
 
-userRouter.delete('/delete/:id', userMiddle.verifyUser, (req, res) => {
-  const id: number = +req.params.id
-  res.send(`Delete user with id ${id}`)
-})
+userRouter.delete('/delete/:id', userMiddle.verifyUser, UserController.remove)
 
+// Exporting router
 export default userRouter
