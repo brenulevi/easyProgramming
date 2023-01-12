@@ -12,22 +12,13 @@ const postRouter = express.Router()
 // Routes
 postRouter.post('/create', userMiddle.verifyUser, PostController.create)
 
-// postRouter.get('/get/', userMiddle.verifyUser, PostController.get)
+postRouter.get('/:id', userMiddle.verifyUser, PostController.get)
 
-// postRouter.get('/get/:id', (req, res) => {
-//   const id: number = +req.params.id
-//   res.send(`Read post with id ${id}`)
-// })
+postRouter.get('/:uid/posts', userMiddle.verifyUser, PostController.getPostsByUser)
 
-// postRouter.put('/update/:id', userMiddle.verifyUser, (req, res) => {
-//   const id: number = +req.params.id
-//   res.send(`Update post with id ${id}`)
-// })
+postRouter.put('/:id', userMiddle.verifyUser, PostController.update)
 
-// postRouter.delete('/delete/:id', userMiddle.verifyUser, (req, res) => {
-//   const id: number = +req.params.id
-//   res.send(`Delete post with id ${id}`)
-// })
+postRouter.delete('/:id', userMiddle.verifyUser, PostController.remove)
 
 // Exporting router
 export default postRouter

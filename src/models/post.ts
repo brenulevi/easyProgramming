@@ -4,8 +4,8 @@ import { IUser } from './user'
 import { IAnswer } from './answer'
 
 export interface IPost {
-  id: number,
-  creator: object,
+  id: string,
+  creator: IUser,
   content: string,
   language: string,
   isSolved: boolean,
@@ -14,17 +14,26 @@ export interface IPost {
 }
 
 const PostSchema = new Schema<IPost>({
+  id: {
+    type: String,
+    required: true,
+  },
   creator: {
-    type: Object,
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
   },
   content: {
     type: String,
+    required: true,
   },
   language: {
     type: String,
+    required: true,
   },
   isSolved: {
     type: Boolean,
+    default: false,
   },
   answers: [{
     type: Schema.Types.ObjectId,

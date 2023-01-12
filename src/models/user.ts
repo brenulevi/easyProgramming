@@ -1,6 +1,5 @@
 import { Schema, model } from 'mongoose';
 
-import { IPost } from './post';
 import { IAnswer } from './answer';
 
 export interface IUser {
@@ -11,8 +10,6 @@ export interface IUser {
   age: number,
   isPrivate: boolean,
   friends: IUser[],
-  posts: IPost[],
-  answers: IAnswer[],
   createdAt: Date,
 }
 
@@ -41,18 +38,10 @@ const UserSchema = new Schema<IUser>({
     type: Boolean,
     default: false,
   },
-  posts: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Post',
-  }],
   friends: [{
     type: Schema.Types.ObjectId,
     ref: 'User',
     maxlength: 100,
-  }],
-  answers: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Answer',
   }],
   createdAt: {
     type: Date,

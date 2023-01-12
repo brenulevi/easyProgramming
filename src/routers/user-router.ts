@@ -16,7 +16,7 @@ userRouter.post('/login', UserController.login)
 
 userRouter.post('/logout', userMiddle.verifyUser, UserController.logout)
 
-userRouter.get('/get/:id', UserController.get)
+userRouter.get('/:id', UserController.get)
 
 userRouter.put('/update', userMiddle.verifyUser, UserController.update)
 

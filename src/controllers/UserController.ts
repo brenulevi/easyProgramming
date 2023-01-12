@@ -5,6 +5,7 @@ import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
 
 import User from '../models/user'
+import Post, { IPost } from '../models/post'
 
 // Create a new user
 export async function create(req: Request, res: Response, next: NextFunction) {
@@ -59,7 +60,6 @@ export async function logout(req: Request, res: Response, next: NextFunction) {
   res.clearCookie('token')
   res.status(200).json({ message: 'Logged out' })
 }
-
 
 // Get a user
 export async function get(req: Request, res: Response, next: NextFunction) {
