@@ -5,7 +5,7 @@ import { IAnswer } from './answer'
 
 export interface IPost {
   id: number,
-  creator: IUser,
+  creator: object,
   content: string,
   language: string,
   isSolved: boolean,
@@ -15,8 +15,7 @@ export interface IPost {
 
 const PostSchema = new Schema<IPost>({
   creator: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
+    type: Object,
   },
   content: {
     type: String,

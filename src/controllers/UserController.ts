@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
+
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
@@ -53,6 +54,12 @@ export async function login(req: Request, res: Response, next: NextFunction) {
   })
 }
 
+// Logout a user
+export async function logout(req: Request, res: Response, next: NextFunction) {
+  res.clearCookie('token')
+  res.status(200).json({ message: 'Logged out' })
+}
+
 
 // Get a user
 export async function get(req: Request, res: Response, next: NextFunction) {
@@ -101,4 +108,4 @@ export async function remove(req: Request, res: Response, next: NextFunction) {
   })
 }
 
-export default { create, login, get, update, remove }
+export default { create, login, logout, get, update, remove }
